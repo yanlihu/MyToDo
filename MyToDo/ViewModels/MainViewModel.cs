@@ -28,14 +28,46 @@ namespace MyToDo.ViewModels
             {
                 return;
             }
-            regionManager.Regions[PrismManager.MainViewRegionName].RequestNavigate(menubar.NameSpace);
+            regionManager.Regions[PrismManager.MainViewRegionName].RequestNavigate(menubar.NameSpace, back => 
+            { 
+                journal = back.Context.NavigationService.Journal;
+                IsLeftDrawerOpen = false;
+            });
         }
-
+       
         public DelegateCommand<MenuBar> NavigateCommand { get; set; } 
-
+        public DelegateCommand GoBackCommand
+        { 
+            get
+            {
+                return new DelegateCommand(() =>
+                {
+                    if (journal != null && journal.CanGoBack)
+                    {
+                        journal.GoBack();
+                    }
+                });
+            }
+        }
+        public DelegateCommand GoForwardCommand
+        {
+            get
+            {
+                return new DelegateCommand(() =>
+                {
+                    if (journal != null && journal.CanGoForward)
+                    {
+                        journal.GoForward();
+                    }
+                });
+            }
+        }
         private ObservableCollection<MenuBar> menuBars;
         private readonly IRegionManager regionManager;
-
+        private IRegionNavigationJournal journal;
+        /// <summary>
+        /// 导航菜单集合
+        /// </summary>
         public ObservableCollection<MenuBar> MenuBars
         {
 			get { return menuBars; }
@@ -45,8 +77,18 @@ namespace MyToDo.ViewModels
 		{
 			MenuBars.Add(new MenuBar() { Icon = "Home", Title = "首页", NameSpace = "IndexView" });
             MenuBars.Add(new MenuBar() { Icon = "NotebookCheckOutline", Title = "待办事项", NameSpace = "ToDoView" });
-            MenuBars.Add(new MenuBar() { Icon = "NotebookHeartOutline", Title = "备忘录", NameSpace = "MemoView" });
+            MenuBars.Add(new MenuBar() { Icon = "NotebookPlus", Title = "备忘录", NameSpace = "MemoView" });
             MenuBars.Add(new MenuBar() { Icon = "Cog", Title = "设置", NameSpace = "SettingsView" });
         }
-	}
+        private bool isLeftDrawerOpen=false;
+        /// <summary>
+        /// 左边栏是否打开
+        /// </summary>
+        public bool IsLeftDrawerOpen
+        {
+            get { return isLeftDrawerOpen; }
+            set { isLeftDrawerOpen = value;RaisePropertyChanged(); }
+        }
+
+    }
 }
