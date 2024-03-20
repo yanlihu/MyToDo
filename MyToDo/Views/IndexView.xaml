@@ -9,6 +9,7 @@
     xmlns:prism="http://prismlibrary.com/"
     d:DesignHeight="450"
     d:DesignWidth="800"
+    prism:ViewModelLocator.AutoWireViewModel="True"
     mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
@@ -33,6 +34,29 @@
                         Margin="10"
                         Background="{Binding Color}"
                         CornerRadius="5">
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Setter Property="RenderTransformOrigin" Value="0.5,0.5" />
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Effect">
+                                            <Setter.Value>
+                                                <DropShadowEffect
+                                                    BlurRadius="10"
+                                                    Opacity="0.5"
+                                                    ShadowDepth="5"
+                                                    Color="Black" />
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Setter Property="RenderTransform">
+                                            <Setter.Value>
+                                                <ScaleTransform ScaleX="1.05" ScaleY="1.05" />
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
                         <Grid>
                             <StackPanel>
                                 <materialDesign:PackIcon Margin="3" Kind="{Binding Icon}" />
@@ -78,14 +102,13 @@
                 CornerRadius="5">
                 <StackPanel>
                     <StackPanel Margin="5">
-                        <DockPanel>
+                        <DockPanel LastChildFill="False">
                             <TextBlock
                                 DockPanel.Dock="Left"
                                 FontSize="15"
                                 FontWeight="Bold"
                                 Text="待办事项" />
                             <Button
-                                HorizontalAlignment="Right"
                                 Background="Transparent"
                                 BorderBrush="Transparent"
                                 DockPanel.Dock="Right">
@@ -93,7 +116,22 @@
                             </Button>
                         </DockPanel>
                     </StackPanel>
-                    <ListBox />
+                    <ListBox HorizontalContentAlignment="Stretch" ItemsSource="{Binding MemoToDos}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <DockPanel LastChildFill="False">
+                                    <StackPanel DockPanel.Dock="Left">
+                                        <TextBlock
+                                            FontSize="14"
+                                            FontWeight="Heavy"
+                                            Text="{Binding Title}" />
+                                        <TextBlock Opacity="0.5" Text="{Binding Content}" />
+                                    </StackPanel>
+                                    <ToggleButton DockPanel.Dock="Right" />
+                                </DockPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
                 </StackPanel>
             </Border>
             <Border
@@ -103,14 +141,13 @@
                 CornerRadius="5">
                 <StackPanel>
                     <StackPanel Margin="5">
-                        <DockPanel>
+                        <DockPanel LastChildFill="False">
                             <TextBlock
                                 DockPanel.Dock="Left"
                                 FontSize="15"
                                 FontWeight="Bold"
                                 Text="备忘录" />
                             <Button
-                                HorizontalAlignment="Right"
                                 Background="Transparent"
                                 BorderBrush="Transparent"
                                 DockPanel.Dock="Right">
@@ -118,7 +155,22 @@
                             </Button>
                         </DockPanel>
                     </StackPanel>
-                    <ListBox />
+                    <ListBox HorizontalContentAlignment="Stretch" ItemsSource="{Binding MemoToDos}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <DockPanel LastChildFill="False">
+                                    <StackPanel DockPanel.Dock="Left">
+                                        <TextBlock
+                                            FontSize="14"
+                                            FontWeight="Heavy"
+                                            Text="{Binding Title}" />
+                                        <TextBlock Opacity="0.5" Text="{Binding Content}" />
+                                    </StackPanel>
+                                    <ToggleButton DockPanel.Dock="Right" />
+                                </DockPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
                 </StackPanel>
             </Border>
         </Grid>

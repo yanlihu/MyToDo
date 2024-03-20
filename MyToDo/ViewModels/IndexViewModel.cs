@@ -16,6 +16,8 @@ namespace MyToDo.ViewModels
         {
             TaskBars = new ObservableCollection<TaskBar>();
             CreateTaskBars();
+            MemoToDos = new ObservableCollection<MemoToDo>();
+            CreateMemoToDos();
         }
         private ObservableCollection<TaskBar> taskBars;
 
@@ -24,12 +26,24 @@ namespace MyToDo.ViewModels
 			get { return taskBars; }
 			set { taskBars = value; RaisePropertyChanged(); }
 		}
-		private void CreateTaskBars()
+        private ObservableCollection<MemoToDo> memoToDos;
+        public ObservableCollection<MemoToDo> MemoToDos
+        {
+            get { return memoToDos; }
+            set { memoToDos = value; RaisePropertyChanged(); }
+        }
+        private void CreateTaskBars()
 		{
-            TaskBars.Add(new TaskBar { Icon = "ArchiveCogOutline", Color = "Red", Title = "汇总", Content = "Home" });
-            TaskBars.Add(new TaskBar { Icon = "CheckCircleOutline", Color = "Green", Title = "已完成", Content = "List" });
-            TaskBars.Add(new TaskBar { Icon = "PercentCircle", Color = "Blue", Title = "完成比例", Content = "Add" });
-            TaskBars.Add(new TaskBar { Icon = "NotebookPlusOutline", Color = "Pink", Title = "备忘录", Content = "Settings" });
+            TaskBars.Add(new TaskBar { Icon = "ArchiveCogOutline", Color = "PaleGreen", Title = "汇总", Content = "Home" });
+            TaskBars.Add(new TaskBar { Icon = "CheckCircleOutline", Color = "Brown", Title = "已完成", Content = "List" });
+            TaskBars.Add(new TaskBar { Icon = "PercentCircle", Color = "Pink", Title = "完成比例", Content = "Add" });
+            TaskBars.Add(new TaskBar { Icon = "NotebookPlusOutline", Color = "Green", Title = "备忘录", Content = "Settings" });
         }   
+        private void CreateMemoToDos()
+        {
+            MemoToDos.Add(new MemoToDo { Title = "备忘录1", Content = "备忘录1内容" });
+            MemoToDos.Add(new MemoToDo { Title = "备忘录2", Content = "备忘录2内容" });
+            MemoToDos.Add(new MemoToDo { Title = "备忘录3", Content = "备忘录3内容" });
+        }
 	}
 }
