@@ -62,43 +62,45 @@
                         Content="+添加代办"
                         DockPanel.Dock="Right" />
                 </DockPanel>
-                <ItemsControl Grid.Row="1" ItemsSource="{Binding TODODoTos}">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <WrapPanel />
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Border
-                                MinWidth="140"
-                                MinHeight="130"
-                                Margin="5"
-                                Background="Green"
-                                CornerRadius="3">
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="auto" />
-                                        <RowDefinition />
-                                    </Grid.RowDefinitions>
-                                    <DockPanel Grid.Row="0">
-                                        <TextBlock
-                                            Margin="3"
-                                            FontSize="12"
-                                            FontWeight="Bold"
-                                            Text="{Binding Title}" />
-                                        <materialDesign:PopupBox HorizontalAlignment="Right" Panel.ZIndex="1">
-                                            <Button Content="删除" />
-                                        </materialDesign:PopupBox>
-                                    </DockPanel>
-                                    <StackPanel Grid.Row="1">
-                                        <TextBlock Margin="3" Text="{Binding Content}" />
-                                    </StackPanel>
-                                </Grid>
-                            </Border>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                    <ItemsControl ItemsSource="{Binding TODODoTos}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border
+                                    MinWidth="140"
+                                    MinHeight="130"
+                                    Margin="5"
+                                    Background="Green"
+                                    CornerRadius="3">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto" />
+                                            <RowDefinition />
+                                        </Grid.RowDefinitions>
+                                        <DockPanel Grid.Row="0">
+                                            <TextBlock
+                                                Margin="3"
+                                                FontSize="12"
+                                                FontWeight="Bold"
+                                                Text="{Binding Title}" />
+                                            <materialDesign:PopupBox HorizontalAlignment="Right" Panel.ZIndex="1">
+                                                <Button Content="删除" />
+                                            </materialDesign:PopupBox>
+                                        </DockPanel>
+                                        <StackPanel Grid.Row="1">
+                                            <TextBlock Margin="3" Text="{Binding Content}" />
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
             </Grid>
         </materialDesign:DrawerHost>
     </materialDesign:DialogHost>
