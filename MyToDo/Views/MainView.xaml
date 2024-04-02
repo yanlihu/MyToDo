@@ -20,7 +20,6 @@
     WindowStyle="None"
     mc:Ignorable="d">
     <materialDesign:DialogHost DialogTheme="Inherit" Identifier="RootDialog">
-
         <materialDesign:DrawerHost IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}">
             <materialDesign:DrawerHost.LeftDrawerContent>
                 <DockPanel MinWidth="220">
@@ -55,7 +54,10 @@
                             <DataTemplate>
                                 <StackPanel Background="Transparent" Orientation="Horizontal">
                                     <materialDesign:PackIcon Margin="10" Kind="{Binding Icon}" />
-                                    <TextBlock Margin="10" Text="{Binding Title}" FontSize="16"/>
+                                    <TextBlock
+                                        Margin="10"
+                                        FontSize="16"
+                                        Text="{Binding Title}" />
                                 </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>

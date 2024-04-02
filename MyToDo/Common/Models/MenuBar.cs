@@ -9,7 +9,7 @@ namespace MyToDo.Common.Models
 	/// <summary>
 	/// 系统导航菜单实体类
 	/// </summary>
-    class MenuBar
+    public class MenuBar
     {
 		private string icon;
 
